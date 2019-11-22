@@ -1,15 +1,27 @@
-package com.rewards.domain;
+package com.customer.rewards.domain;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "customer_transaction")
 public class CustomerTransaction {
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column(nullable = false)
     private Long customerId;
-    private Long transactionId;
+
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date transactionDate;
+
+    @Column(nullable = false)
     private Double transactionAmount;
 
     public Long getCustomerId() {
@@ -20,12 +32,12 @@ public class CustomerTransaction {
         this.customerId = customerId;
     }
 
-    public Long getTransactionId() {
-        return transactionId;
+    public Long getId() {
+        return id;
     }
 
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getTransactionDate() {
@@ -53,8 +65,8 @@ public class CustomerTransaction {
         CustomerTransaction that = (CustomerTransaction) o;
 
         return new EqualsBuilder()
+                .append(id, that.id)
                 .append(customerId, that.customerId)
-                .append(transactionId, that.transactionId)
                 .append(transactionDate, that.transactionDate)
                 .append(transactionAmount, that.transactionAmount)
                 .isEquals();
@@ -63,8 +75,8 @@ public class CustomerTransaction {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
+                .append(id)
                 .append(customerId)
-                .append(transactionId)
                 .append(transactionDate)
                 .append(transactionAmount)
                 .toHashCode();

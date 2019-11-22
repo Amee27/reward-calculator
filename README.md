@@ -2,4 +2,4 @@
 
 ## Overview
 
-Rewards Calculator is a standalone application which provides the functionality to calculate customer's reward points.
+Rewards Calculator is an API which provides the functionality to calculate customer's reward points.
